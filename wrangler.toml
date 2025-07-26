@@ -1,0 +1,6 @@
+name = "linkbuilder-worker"
+type = "javascript"
+
+account_id = "583ade7e68b24f869b40a360ac9cb991"
+workers_dev = true
+compatibility_date = "2025-07-26"
