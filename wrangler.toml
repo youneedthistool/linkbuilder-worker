@@ -1,5 +1,5 @@
 name = "linkbuilder-worker"
-type = "javascript"
+main = "index.js"
 
 account_id = "583ade7e68b24f869b40a360ac9cb991"
 workers_dev = true
