@@ -17,7 +17,7 @@ export default {
 
     const targetUrl = `https://www.amazon.com/dp/${entry.asin}?tag=${entry.trackingId}`;
 
-    // Fire and forget
+    // Envia o log assincronamente, sem bloquear o redirect
     ctx.waitUntil(
       fetch("https://script.google.com/macros/s/AKfycbxVg14LQT6hUKwE5uIuB2fUbY9KGwHK9h9z_QxasWrpiuxjAXSuedKaA65OkH7xpWuzjQ/exec", {
         method: "POST",
@@ -31,10 +31,11 @@ export default {
           userAgent: request.headers.get("User-Agent") || ""
         })
       }).catch(() => {
-        // Ignora erros de log
+        // Ignora erros para não impactar o usuário
       })
     );
 
+    // Redireciona imediatamente para a URL da Amazon
     return Response.redirect(targetUrl, 302);
   }
 };
