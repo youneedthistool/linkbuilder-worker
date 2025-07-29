@@ -1,5 +1,5 @@
-name = "linkbuilder-worker1"
+name = "linkbuilder-worker"
+main = "index.js"                   # arquivo principal do seu worker
 account_id = "583ade7e68b24f869b40a360ac9cb991"
+compatibility_date = "2025-07-29"
 workers_dev = false
-route = "youneedthistool.com/*"
-zone_id = "38cde16351639371a8ec76b93721d882"  # seu zone ID aqui
