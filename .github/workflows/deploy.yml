@@ -18,6 +18,6 @@ jobs:
 
       - name: Publish Worker
         env:
-          CF_API_TOKEN: 9pRt5NirZ0nXQnq_QGRmZ6wR4Pxis0qTiPHI8Ajv
+          CF_API_TOKEN: qkRKvnlOA2jqaoRS4OCLXm3ic-SiCs7PJH-5euuR
           CF_ACCOUNT_ID: 583ade7e68b24f869b40a360ac9cb991
         run: wrangler deploy
