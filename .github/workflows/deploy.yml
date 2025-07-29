@@ -1,0 +1,23 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Publish Worker
+        env:
+          CF_API_TOKEN: 9pRt5NirZ0nXQnq_QGRmZ6wR4Pxis0qTiPHI8Ajv
+          CF_ACCOUNT_ID: 583ade7e68b24f869b40a360ac9cb991
+        run: wrangler publish
