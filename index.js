@@ -1,6 +1,6 @@
 
 const redirects = {
-  "/mesh-pen-holder-and-organizer-black": "https://youneedthistool.com/mesh-pen-holder-and-organizer-black"
+  "/mesh-pen-holder-and-organizer-black": "https://youneedthistool.com/mesh-pen-holder-and-organizer-black-youtube"
 };
 
 export default {
