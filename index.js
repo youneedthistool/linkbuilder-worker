@@ -1,5 +1,6 @@
+
 const redirects = {
-  "/nome-do-slug": "https://www.amazon.com/dp/ASIN?tag=trackingid"
+  "/mesh-pen-holder-and-organizer-black": "https://www.amazon.com/Amazon-Basics-Mesh-Pen-Holder/dp/B08VP72ZNS?pd_rd_i=B08VP72ZNS&pd_rd_w=gwG7h&content-id=amzn1.sym.57b80066-10e8-4be7-a5f2-ce3f1faa4959&pf_rd_p=57b80066-10e8-4be7-a5f2-ce3f1faa4959&pf_rd_r=4EPPKJA0RRJF57TECT09&pd_rd_wg=JhqMl&pd_rd_r=242f43b0-784c-4de2-94c7-0ba885110376&th=1&linkCode=ll1&tag=youtube0178d-20&linkId=5dec63b4242126d8b01c48f00f889114&language=en_US&ref_=as_li_ss_tl"
 };
 
 export default {
