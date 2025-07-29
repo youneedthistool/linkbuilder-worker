@@ -20,4 +20,4 @@ jobs:
         env:
           CF_API_TOKEN: 9pRt5NirZ0nXQnq_QGRmZ6wR4Pxis0qTiPHI8Ajv
           CF_ACCOUNT_ID: 583ade7e68b24f869b40a360ac9cb991
-        run: wrangler publish
+        run: wrangler deploy
