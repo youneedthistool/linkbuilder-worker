@@ -1,5 +1,5 @@
 const redirects = {
-  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-youtube": {"asin":"B0D78Q2KWR","trackingId":"tiktok01095-20"}
+  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-youtube": {"asin":"B0D78Q2KWR","trackingId":"youtube0178d-20"}
 };
 
 export default {
