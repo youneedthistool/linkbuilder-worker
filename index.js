@@ -1,5 +1,5 @@
 const redirects = {
-  "/alitte-steno-pads-spiral-6x9-12-pack-assorted-bright-colors-youtube": {"asin":"B074ZQXDWS","trackingId":"ytshorts010c-20"}
+
 };
 
 export default {
