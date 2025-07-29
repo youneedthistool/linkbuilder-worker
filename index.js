@@ -1,6 +1,5 @@
 const redirects = {
-  "/": "https://youneedthistool.com", // ajuste aqui para a URL da sua landing page
-  "/mesh-pen-holder-and-organizer-black": "https://youneedthistool.com/mesh-pen-holder-and-organizer-black-youtube"
+  "/mesh-pen-holder-and-organizer-black-youtube": "https://www.amazon.com/dp/B08VP72ZNS?tag=trackingid"
 };
 
 export default {
