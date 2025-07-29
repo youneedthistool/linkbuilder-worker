@@ -1,6 +1,6 @@
 
 const redirects = {
-
+  "/amazon-basics-mesh-pen-holder-and-organizer,-black,": "https://www.amazon.com/dp/B08VP72ZNS?tag="
 };
 
 export default {
