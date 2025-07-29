@@ -1,5 +1,5 @@
 const redirects = {
-  "/mesh-pen-holder-and-organizer-black-youtube": "https://www.amazon.com/dp/B08VP72ZNS?tag=trackingid"
+  "/nome-do-slug": "https://www.amazon.com/dp/ASIN?tag=trackingid"
 };
 
 export default {
