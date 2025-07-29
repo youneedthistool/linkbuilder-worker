@@ -16,7 +16,7 @@ export default {
       let logMessage = "";
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzf728DBPTZEJVgGSj5omYHmIiWptSbMMDxhbJJyUqTKdvDLfr2XW1YgYoc1dI2VLTwhw/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxVg14LQT6hUKwE5uIuB2fUbY9KGwHK9h9z_QxasWrpiuxjAXSuedKaA65OkH7xpWuzjQ/exec", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
