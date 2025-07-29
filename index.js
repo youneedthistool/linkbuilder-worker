@@ -1,5 +1,5 @@
 const redirects = {
-  "/yasonic-shower-caddy-6-pack-large-capacity-shower-youtube": {"asin":"B0D1BZJSX4","trackingId":"youtube0178d-20"},
+  "/yasonic-shower-caddy-6-pack-large-capacity-shower-youtube": {"asin":"B0D1BZJSX4","trackingId":"ytshorts010c-20"},
   "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-x": {"asin":"B0D78Q2KWR","trackingId":"x2020-20"},
   "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-yt-shorts": {"asin":"B0D78Q2KWR","trackingId":"ytshorts010c-20"}
 };
