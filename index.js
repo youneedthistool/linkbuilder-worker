@@ -13,10 +13,9 @@ export default {
 
     if (entry) {
       const targetUrl = `https://www.amazon.com/dp/${entry.asin}?tag=${entry.trackingId}`;
-      let logStatus = "";
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyBbAWVDPc0jfULsPBV5PhKjU89TGa2AW6vTmSYOWxpmoW9NEwEEyEzH-XtPzTYLAY/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbzf728DBPTZEJVgGSj5omYHmIiWptSbMMDxhbJJyUqTKdvDLfr2XW1YgYoc1dI2VLTwhw/exec", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -28,19 +27,11 @@ export default {
             userAgent: request.headers.get("User-Agent") || ""
           })
         });
-        logStatus = `Log sent, status: ${response.status}`;
       } catch (e) {
-        logStatus = `Log error: ${e.message}`;
+        // Apenas ignora erros no envio do log
       }
 
-      // Resposta personalizada para DEBUG — remove depois
-      return new Response(`Redirecting to Amazon... ${logStatus}`, {
-        status: 302,
-        headers: {
-          Location: targetUrl,
-          "Content-Type": "text/plain"
-        }
-      });
+      return Response.redirect(targetUrl, 301);
     }
 
     return new Response("Not found", { status: 404 });
