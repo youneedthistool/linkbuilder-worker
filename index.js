@@ -1,7 +1,7 @@
 const redirects = {
-  "/basics-mesh-pen-holder-and-organizer-black-tiktok": {"asin":"B08VP72ZNS","trackingId":"TikTok"},
-  "/jean-lucka-instagram": {"asin":"B08VP72ZNS","trackingId":"Instagram"},
-  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-gan-iv-charger-with-6-6-ft-cable-yt-shorts": {"asin":"B0D78Q2KWR","trackingId":"YT-Shorts"}
+  "/basics-mesh-pen-holder-and-organizer-black-tiktok": {"asin":"B08VP72ZNS","trackingId":"tiktok01095-20"},
+  "/jean-lucka-instagram": {"asin":"B08VP72ZNS","trackingId":"instareels0103-20"},
+  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-gan-iv-charger-with-6-6-ft-cable-yt-shorts": {"asin":"B0D78Q2KWR","trackingId":"ytshorts010c-20"}
 };
 
 export default {
