@@ -1,5 +1,5 @@
 const redirects = {
-  "/collapsible-fabric-storage-cubes-organizer-with-handle-tiktok": {"asin":"B071225BBS","trackingId":"tiktok01095-20"}
+
 };
 
 export default {
