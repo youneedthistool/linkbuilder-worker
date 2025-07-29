@@ -2,6 +2,8 @@ name: Deploy Cloudflare Worker
 
 on:
   push:
+    paths:
+      - 'index.js'
     branches:
       - main
 
@@ -16,8 +18,7 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler
 
-      - name: Publish Worker
+      - name: Publish to Cloudflare
         env:
-          CF_API_TOKEN: qkRKvnlOA2jqaoRS4OCLXm3ic-SiCs7PJH-5euuR
-          CF_ACCOUNT_ID: 583ade7e68b24f869b40a360ac9cb991
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: wrangler deploy
