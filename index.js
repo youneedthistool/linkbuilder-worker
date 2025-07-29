@@ -1,6 +1,5 @@
 const redirects = {
-  "/basics-mesh-pen-holder-and-organizer-black-tiktok": {"asin":"B08VP72ZNS","trackingId":"tiktok01095-20"},
-  "/jean-lucka-instagram": {"asin":"B08VP72ZNS","trackingId":"tiktok01095-20"}
+
 };
 
 export default {
