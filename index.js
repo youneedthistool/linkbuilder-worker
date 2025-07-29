@@ -1,5 +1,5 @@
 const redirects = {
-  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-gan-iv-charger-with-6-6-ft-cable-compatible-with-macbook-air-pro-ipad-pro-and-all-usbc-devices-black--tiktok": {"asin":"B0D78Q2KWR","trackingId":"tiktok01095-20"}
+  "/nekteck-100w-usb-c-charger-compact-and-foldable-fast-charging-gan-iv-charger-with-6-6-ft-cable-compatible-with-macbook-air-pro-ipad-pro-and-all-usbc-devices-black-tiktok": {"asin":"B0D78Q2KWR","trackingId":"tiktok01095-20"}
 };
 
 export default {
