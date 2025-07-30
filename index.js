@@ -1,5 +1,5 @@
 const redirects = {
-  "/transparent-school-backpack-with-water-resistant-pvc-plastic-material-youtube": {"asin":"B074ZQXDWS","trackingId":"ytshorts010c-20"}
+
 };
 
 export default {
