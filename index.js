@@ -7,12 +7,14 @@ const redirects = {
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    const slug = url.pathname.toLowerCase();
-    const entry = redirects[slug];
+    const slug = url.pathname.slice(1).toLowerCase(); // tira a barra inicial
+    const entry = redirects["/" + slug]; // busca com a barra
+
     if (entry) {
       const targetUrl = `https://www.amazon.com/dp/${entry.asin}?tag=${entry.trackingId}`;
       return Response.redirect(targetUrl, 301);
     }
+
     return new Response("Not found", { status: 404 });
   }
 };
