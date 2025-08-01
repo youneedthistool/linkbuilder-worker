@@ -5,7 +5,7 @@ export default {
     const slug = url.pathname.toLowerCase().replace(/^\/go\/|^\/+/, "");
 
     // URL pública do JSON com os redirects
-    const redirectsUrl = 'https://youneedthistool.github.io/DataIngestion/redirects.json';
+    const redirectsUrl = 'https://youneedthistool.github.io/redirect-engine/redirects.json';
 
     let data;
     try {
