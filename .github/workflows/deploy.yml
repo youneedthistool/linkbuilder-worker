@@ -4,9 +4,6 @@ on:
   push:
     paths:
       - 'index.js'
-      - 'REDIRECT-ENGINE/generate_redirects_json.py'
-      - 'CORE/config.json'
-      - 'DATA-INGESTION/**'
     branches:
       - main
 
@@ -17,20 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install -r CORE/requirements.txt
-
-      - name: Generate redirects.json
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GOOGLE_SHEETS_CREDS: ${{ secrets.GOOGLE_SHEETS_CREDS }} # se você guardar JSON do sheets como segredo
-        run: python REDIRECT-ENGINE/generate_redirects_json.py
 
       - name: Install Wrangler
         run: npm install -g wrangler
