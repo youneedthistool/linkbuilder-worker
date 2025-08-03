@@ -22,7 +22,7 @@ export default {
           body: JSON.stringify({
             platform: entry.platform || 'unknown',
             trackingId: entry.trackingId || 'none',
-            productId: entry.productId || 'none',
+            productId: entry.asin || 'none',  // corrigido aqui
             userAgent: request.headers.get('User-Agent') || 'unknown',
             referrer: request.headers.get('Referer') || 'unknown',
             language: request.headers.get('Accept-Language') || 'unknown',
