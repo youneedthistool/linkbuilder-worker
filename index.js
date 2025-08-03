@@ -16,13 +16,13 @@ export default {
     const entry = data.links[slug];
     if (entry && entry.affiliateLink) {
       try {
-        await fetch('https://us-central1-amazonaffiliatedata.cloudfunctions.net/logClick', {
+        await fetch('https://logclick-n6djtiedea-uc.a.run.app', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             platform: entry.platform || 'unknown',
             trackingId: entry.trackingId || 'none',
-            productId: entry.asin || 'none',  // corrigido aqui
+            productId: entry.asin || 'none',
             userAgent: request.headers.get('User-Agent') || 'unknown',
             referrer: request.headers.get('Referer') || 'unknown',
             language: request.headers.get('Accept-Language') || 'unknown',
