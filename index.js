@@ -1,3 +1,122 @@
+// worker.js (index.js)
+
+function base64urlEncode(str) {
+  return btoa(str)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+function encodeUTF8(str) {
+  return new TextEncoder().encode(str);
+}
+
+async function signJwt(payload, privateKeyPem) {
+  const pem = privateKeyPem
+    .replace(/-----BEGIN PRIVATE KEY-----/, "")
+    .replace(/-----END PRIVATE KEY-----/, "")
+    .replace(/\n/g, "")
+    .replace(/\\n/g, "");
+
+  const binaryDer = Uint8Array.from(atob(pem), c => c.charCodeAt(0));
+
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    binaryDer.buffer,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+
+  const header = {
+    alg: "RS256",
+    typ: "JWT"
+  };
+
+  const encodedHeader = base64urlEncode(JSON.stringify(header));
+  const encodedPayload = base64urlEncode(JSON.stringify(payload));
+  const data = `${encodedHeader}.${encodedPayload}`;
+
+  const signature = await crypto.subtle.sign(
+    "RSASSA-PKCS1-v1_5",
+    key,
+    encodeUTF8(data)
+  );
+
+  const signatureBase64Url = base64urlEncode(
+    String.fromCharCode(...new Uint8Array(signature))
+  );
+
+  return `${data}.${signatureBase64Url}`;
+}
+
+async function getAccessToken(env) {
+  const iat = Math.floor(Date.now() / 1000);
+  const exp = iat + 3600;
+
+  const payload = {
+    iss: env.FIREBASE_CLIENT_EMAIL,
+    sub: env.FIREBASE_CLIENT_EMAIL,
+    aud: "https://oauth2.googleapis.com/token",
+    iat,
+    exp,
+    scope: "https://www.googleapis.com/auth/datastore"
+  };
+
+  const jwt = await signJwt(payload, env.FIREBASE_PRIVATE_KEY);
+
+  const params = new URLSearchParams();
+  params.set("grant_type", "urn:ietf:params:oauth:grant-type:jwt-bearer");
+  params.set("assertion", jwt);
+
+  const response = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString(),
+  });
+
+  const data = await response.json();
+  if (!data.access_token) {
+    throw new Error("Failed to get access token");
+  }
+
+  return data.access_token;
+}
+
+async function saveLogToFirestore(logData, env) {
+  try {
+    const accessToken = await getAccessToken(env);
+
+    const url = `https://firestore.googleapis.com/v1/projects/${env.FIREBASE_PROJECT_ID}/databases/(default)/documents/clicks-db`;
+
+    const body = { fields: {} };
+
+    for (const [key, value] of Object.entries(logData)) {
+      if (key === "timestamp") {
+        body.fields[key] = { timestampValue: value };
+      } else {
+        body.fields[key] = { stringValue: String(value) };
+      }
+    }
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("Firestore save failed:", res.status, text);
+    }
+  } catch (e) {
+    console.error("Error saving log to Firestore:", e);
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -41,15 +160,8 @@ export default {
       deviceType,
     };
 
-    // Registra o clique no Firebase sem atrasar o redirect
-    ctx.waitUntil(
-      fetch('https://logclick-n6djtiedea-uc.a.run.app', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(logData),
-      }).catch(err => console.error("Logging failed:", err))
-    );
+    ctx.waitUntil(saveLogToFirestore(logData, env));
 
     return Response.redirect(entry.affiliateLink, 301);
   }
-}
+};

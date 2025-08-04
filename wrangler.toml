@@ -1,5 +1,5 @@
 name = "linkbuilder-worker1"
-main = "index.js"                   # arquivo principal do seu worker
+main = "index.js"
 account_id = "583ade7e68b24f869b40a360ac9cb991"
 compatibility_date = "2025-07-29"
 workers_dev = false
