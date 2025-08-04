@@ -77,15 +77,18 @@ async function getAccessToken(env) {
 
   const data = await response.json();
   if (!data.access_token) {
+    console.error("Failed to get access token:", data);
     throw new Error("Failed to get access token");
   }
 
+  console.log("Access token obtained");
   return data.access_token;
 }
 
 async function saveLogToFirestore(logData, env) {
   try {
     const accessToken = await getAccessToken(env);
+    console.log("Got access token");
 
     const url = `https://firestore.googleapis.com/v1/projects/${env.FIREBASE_PROJECT_ID}/databases/(default)/documents/clicks-db`;
 
@@ -99,6 +102,8 @@ async function saveLogToFirestore(logData, env) {
       }
     }
 
+    console.log("Sending log to Firestore:", JSON.stringify(body));
+
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -111,6 +116,8 @@ async function saveLogToFirestore(logData, env) {
     if (!res.ok) {
       const text = await res.text();
       console.error("Firestore save failed:", res.status, text);
+    } else {
+      console.log("Log saved successfully");
     }
   } catch (e) {
     console.error("Error saving log to Firestore:", e);
@@ -128,12 +135,15 @@ export default {
     try {
       const response = await fetch(redirectsUrl, { cf: { cacheTtl: 300 } });
       data = await response.json();
+      console.log("Redirects loaded");
     } catch (e) {
+      console.error("Failed to load redirects:", e);
       return new Response("Failed to load redirects", { status: 500 });
     }
 
     const entry = data.links?.[slug];
     if (!entry || !entry.affiliateLink) {
+      console.log("Slug not found:", slug);
       return new Response("Not found", { status: 404 });
     }
 
@@ -159,6 +169,8 @@ export default {
       country,
       deviceType,
     };
+
+    console.log("Log data prepared", logData);
 
     ctx.waitUntil(saveLogToFirestore(logData, env));
 
